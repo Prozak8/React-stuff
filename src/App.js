@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import ValidationText from './ValidationText/ValidationText';
+import Char from './Char/Char';
 
 class App extends Component {
   state = {
@@ -14,6 +15,10 @@ class App extends Component {
 
 
   render() {
+    const charList = this.state.userInput.split('').map((ch, index) => {
+      return <Char character={ch} key={index} />;
+    });
+
     return (
       <div className="App">
         <h1>Letter Counter App</h1>
@@ -30,6 +35,7 @@ class App extends Component {
 
         <ValidationText 
           inputLength={this.state.userInput.length}/>
+          {charList}
         <input 
           type="text" 
           onChange={this.inputChangedHandler} 
