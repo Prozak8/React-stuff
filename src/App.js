@@ -4,6 +4,15 @@ import './App.css';
 import ValidationText from './ValidationText/ValidationText';
 
 class App extends Component {
+  state = {
+    userInput: ''
+  }
+
+  inputChangedHandler = (event) => {
+    this.setState({userInput: event.target.value});
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -17,9 +26,18 @@ class App extends Component {
           <li>When you click a CharComponent, it should be removed from the entered text.</li>
         </ul>
         <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
+        <hr />
 
-        <ValidationText />
-        <input type="text" className="input-field"></input>
+        <ValidationText 
+          inputLength={this.state.userInput.length}/>
+        <input 
+          type="text" 
+          onChange={this.inputChangedHandler} 
+          value={this.state.userInput} 
+          className="input-field">
+        </input>
+
+        <p>{this.state.userInput}</p>
 
       </div>
     );
